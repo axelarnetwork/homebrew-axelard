@@ -1,0 +1,46 @@
+name: Package homebrew
+
+on:
+  push:
+
+jobs:
+  package-binaries:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-latest]
+
+    permissions:
+      contents: write
+      packages: write
+      id-token: write
+
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+          submodules: recursive
+  
+      - name: Commit files
+        run: |
+          git config --local user.email "kalid@axelar.network"
+          git config --local user.name "kalid"
+          git add --all
+          git diff-index --quiet HEAD -- ||  git commit -m "create formula"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
+
+      - name: Register the formula in homebrew
+        run: |
+          brew tap axelarnetwork/axelard https://github.com/axelarnetwork/homebrew-axelard.git
+          
+      - name: install the binary
+        run: |
+          brew install axelard
+          axelard-darwin-amd64-v0.32.2 version
