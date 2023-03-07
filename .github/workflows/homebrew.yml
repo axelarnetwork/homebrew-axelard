@@ -26,8 +26,8 @@ jobs:
   
       - name: Commit files
         run: |
-          git config --local user.email "kalid@axelar.network"
-          git config --local user.name "kalid"
+          git config --local user.email "devops@axelar.network"
+          git config --local user.name "devops"
           git add --all
           git diff-index --quiet HEAD -- ||  git commit -m "update axelard formula"
           
