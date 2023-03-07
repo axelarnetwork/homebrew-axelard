@@ -29,7 +29,8 @@ jobs:
           git config --local user.email "kalid@axelar.network"
           git config --local user.name "kalid"
           git add --all
-          git diff-index --quiet HEAD -- ||  git commit -m "create formula"
+          git diff-index --quiet HEAD -- ||  git commit -m "update axelard formula"
+          
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
