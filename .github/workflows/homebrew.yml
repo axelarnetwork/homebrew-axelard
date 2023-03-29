@@ -44,5 +44,5 @@ jobs:
       - name: install the binary
         continue-on-error: true
         run: |
-          axelarnetwork/axelard/axelard.rb@0.32.2
+          axelarnetwork/axelard/axelard@0.32.2.rb
           axelard version
