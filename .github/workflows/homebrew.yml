@@ -44,5 +44,5 @@ jobs:
       - name: install the binary
         continue-on-error: true
         run: |
-          brew install axelarnetwork/axelard/axelard
+          brew install axelarnetwork/axelard/axelard@0.31.2
           axelard version
