@@ -11,29 +11,25 @@ class AxelardAT0312 < Formula
     },
   }
 
+  # Determine the platform and URL based on the system architecture
+  if Hardware::CPU.arm?
+    platform = :arm64
+  else
+    platform = :amd64
+  end
+
+  # Select the latest version if none is specified
+  version = VERSIONS.keys.last
+
+  # Retrieve the SHA256 hash for the selected version and platform
+  sha256 = VERSIONS[version][platform]
+
+  # Define the URL based on the selected version and platform
+  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{platform}-v#{version}.zip"
+  sha256 sha256
+
   # Install the binary
   def install
-    # Determine the platform and URL based on the system architecture
-    if Hardware::CPU.arm?
-      platform = :arm64
-      ohai "ARM architecture detected"
-    else
-      platform = :amd64
-      ohai "Intel architecture detected"
-    end
-
-    # Select the latest version if none is specified
-    version = VERSIONS.keys.last
-    ohai "Selected version: #{version}"
-
-    # Retrieve the SHA256 hash for the selected version and platform
-    sha256 = VERSIONS[version][platform]
-    ohai "Warning: No SHA256 hash found for Axelard version #{version} and platform #{platform}" unless sha256
-
-    # Define the URL based on the selected version and platform
-    url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{platform}-v#{version}.zip"
-    sha256 sha256
-
     if Hardware::CPU.arm?
       bin.install "axelard-darwin-arm64-v#{version}" => "axelard"
     else
