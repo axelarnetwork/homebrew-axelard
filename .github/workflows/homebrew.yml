@@ -23,19 +23,6 @@ jobs:
         with:
           fetch-depth: '0'
           submodules: recursive
-  
-      - name: Commit files
-        run: |
-          git config --local user.email "devops@axelar.network"
-          git config --local user.name "devops"
-          git add --all
-          git diff-index --quiet HEAD -- ||  git commit -m "update axelard formula"
-          
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: main
 
       - name: Register the formulae in homebrew
         run: |
