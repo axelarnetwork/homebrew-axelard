@@ -25,7 +25,7 @@ class AxelardAT0107 < Formula
   sha256 = VERSIONS[version][platform]
 
   # Define the URL based on the selected version and platform
-  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{platform}-v#{version}.zip"
+  url "https://github.com/axelarnetwork/axelar-core/releases/download/v#{version}/axelard-darwin-#{platform}-v#{version}"
   sha256 sha256
 
   # Install the binary
