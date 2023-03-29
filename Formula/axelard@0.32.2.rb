@@ -1,4 +1,4 @@
-class Axelard < Formula
+class AxelardAT0322 < Formula
   desc "The Axelar Network Core binary"
   homepage "https://github.com/axelarnetwork/axelar-core"
   license "Apache-2.0"
